@@ -1,15 +1,15 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import axios from '../utils/axios';
-import './Courses.css';
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import axios from "../utils/axios";
+import "./Courses.css";
 
 const Courses = () => {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [category, setCategory] = useState('');
-  const [sortBy, setSortBy] = useState('newest');
-  const [priceRange, setPriceRange] = useState('all');
+  const [searchTerm, setSearchTerm] = useState("");
+  const [category, setCategory] = useState("");
+  const [sortBy, setSortBy] = useState("newest");
+  const [priceRange, setPriceRange] = useState("all");
 
   useEffect(() => {
     fetchCourses();
@@ -18,33 +18,36 @@ const Courses = () => {
   const fetchCourses = async () => {
     try {
       setLoading(true);
+
       const params = {};
       if (searchTerm) params.search = searchTerm;
       if (category) params.category = category;
       if (sortBy) params.sort = sortBy;
 
-      const response = await axios.get('/courses', { params });
-      setCourses(response.data.courses);
+      const response = await axios.get("/courses", { params });
+
+      setCourses(response.data?.courses || []); // ✅ SAFE FIX
     } catch (error) {
-      console.error('Error fetching courses:', error);
+      console.error("Error fetching courses:", error);
+      setCourses([]); // ✅ prevent crash
     } finally {
       setLoading(false);
     }
   };
 
   const categories = [
-    'Programming',
-    'Web Development',
-    'Mobile Development',
-    'Data Science',
-    'Machine Learning',
-    'DevOps',
-    'Cloud Computing',
-    'Cybersecurity',
-    'Design',
-    'Business',
-    'Marketing',
-    'Other'
+    "Programming",
+    "Web Development",
+    "Mobile Development",
+    "Data Science",
+    "Machine Learning",
+    "DevOps",
+    "Cloud Computing",
+    "Cybersecurity",
+    "Design",
+    "Business",
+    "Marketing",
+    "Other",
   ];
 
   return (
@@ -131,16 +134,25 @@ const Courses = () => {
             <div className="no-courses">
               <div className="no-courses-icon">🔍</div>
               <p>No courses found matching your criteria.</p>
-              <Link to="/courses" className="reset-btn">Reset Filters</Link>
+              <Link to="/courses" className="reset-btn">
+                Reset Filters
+              </Link>
             </div>
           ) : (
             <>
               <div className="courses-count">
-                <p>Found <strong>{courses.length}</strong> course{courses.length !== 1 ? 's' : ''}</p>
+                <p>
+                  Found <strong>{courses.length}</strong> course
+                  {courses.length !== 1 ? "s" : ""}
+                </p>
               </div>
               <div className="courses-grid">
                 {courses.map((course) => (
-                  <Link to={`/courses/${course._id}`} key={course._id} className="course-card">
+                  <Link
+                    to={`/courses/${course._id}`}
+                    key={course._id}
+                    className="course-card"
+                  >
                     <div className="course-image">
                       <img src={course.thumbnailUrl} alt={course.title} />
                       <div className="course-overlay">
@@ -154,7 +166,9 @@ const Courses = () => {
                       <p className="mentor-name">by {course.mentorId?.name}</p>
                       <div className="course-stats">
                         <span className="rating">⭐ 4.8</span>
-                        <span className="students">👥 {course.totalEnrollments || 0}</span>
+                        <span className="students">
+                          👥 {course.totalEnrollments || 0}
+                        </span>
                       </div>
                       <div className="course-footer">
                         <span className="course-level">Intermediate</span>

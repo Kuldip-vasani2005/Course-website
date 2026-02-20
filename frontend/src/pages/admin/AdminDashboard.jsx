@@ -1,12 +1,12 @@
-import { useState, useEffect } from 'react';
-import axios from '../../utils/axios';
-import './AdminDashboard.css';
+import { useState, useEffect } from "react";
+import axios from "../../utils/axios";
+import "./AdminDashboard.css";
 
 const AdminDashboard = () => {
   const [stats, setStats] = useState(null);
   const [users, setUsers] = useState([]);
   const [courses, setCourses] = useState([]);
-  const [activeTab, setActiveTab] = useState('users');
+  const [activeTab, setActiveTab] = useState("users");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -16,41 +16,47 @@ const AdminDashboard = () => {
   const fetchData = async () => {
     try {
       const [statsRes, usersRes, coursesRes] = await Promise.all([
-        axios.get('/admin/stats'),
-        axios.get('/admin/users'),
-        axios.get('/admin/courses'),
+        axios.get("/admin/stats"),
+        axios.get("/admin/users"),
+        axios.get("/admin/courses"),
       ]);
-      setStats(statsRes.data.stats);
-      setUsers(usersRes.data.users);
-      setCourses(coursesRes.data.courses);
+
+      setStats(statsRes.data?.stats || {});
+      setUsers(usersRes.data?.users || []);
+      setCourses(coursesRes.data?.courses || []);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error("Error fetching data:", error);
+
+      // Prevent crash if API fails
+      setStats({});
+      setUsers([]);
+      setCourses([]);
     } finally {
       setLoading(false);
     }
   };
 
   const handleDeleteUser = async (id) => {
-    if (!confirm('Are you sure you want to delete this user?')) return;
-    
+    if (!confirm("Are you sure you want to delete this user?")) return;
+
     try {
       await axios.delete(`/admin/users/${id}`);
-      alert('User deleted successfully');
+      alert("User deleted successfully");
       fetchData();
     } catch (error) {
-      alert('Failed to delete user');
+      alert("Failed to delete user");
     }
   };
 
   const handleDeleteCourse = async (id) => {
-    if (!confirm('Are you sure you want to delete this course?')) return;
-    
+    if (!confirm("Are you sure you want to delete this course?")) return;
+
     try {
       await axios.delete(`/courses/${id}`);
-      alert('Course deleted successfully');
+      alert("Course deleted successfully");
       fetchData();
     } catch (error) {
-      alert('Failed to delete course');
+      alert("Failed to delete course");
     }
   };
 
@@ -59,7 +65,7 @@ const AdminDashboard = () => {
   return (
     <div className="admin-dashboard">
       <h1>Admin Dashboard</h1>
-      
+
       <div className="stats-grid">
         <div className="stat-card">
           <h3>Total Students</h3>
@@ -80,15 +86,21 @@ const AdminDashboard = () => {
       </div>
 
       <div className="tabs">
-        <button className={activeTab === 'users' ? 'tab active' : 'tab'} onClick={() => setActiveTab('users')}>
+        <button
+          className={activeTab === "users" ? "tab active" : "tab"}
+          onClick={() => setActiveTab("users")}
+        >
           Manage Users
         </button>
-        <button className={activeTab === 'courses' ? 'tab active' : 'tab'} onClick={() => setActiveTab('courses')}>
+        <button
+          className={activeTab === "courses" ? "tab active" : "tab"}
+          onClick={() => setActiveTab("courses")}
+        >
           Manage Courses
         </button>
       </div>
 
-      {activeTab === 'users' && (
+      {activeTab === "users" && (
         <div className="table-container">
           <h2>Users</h2>
           <table>
@@ -105,9 +117,16 @@ const AdminDashboard = () => {
                 <tr key={user._id}>
                   <td>{user.name}</td>
                   <td>{user.email}</td>
-                  <td><span className={`badge ${user.role}`}>{user.role}</span></td>
                   <td>
-                    <button onClick={() => handleDeleteUser(user._id)} className="delete-btn">Delete</button>
+                    <span className={`badge ${user.role}`}>{user.role}</span>
+                  </td>
+                  <td>
+                    <button
+                      onClick={() => handleDeleteUser(user._id)}
+                      className="delete-btn"
+                    >
+                      Delete
+                    </button>
                   </td>
                 </tr>
               ))}
@@ -116,7 +135,7 @@ const AdminDashboard = () => {
         </div>
       )}
 
-      {activeTab === 'courses' && (
+      {activeTab === "courses" && (
         <div className="table-container">
           <h2>Courses</h2>
           <table>
@@ -137,7 +156,12 @@ const AdminDashboard = () => {
                   <td>${course.price}</td>
                   <td>{course.totalEnrollments}</td>
                   <td>
-                    <button onClick={() => handleDeleteCourse(course._id)} className="delete-btn">Delete</button>
+                    <button
+                      onClick={() => handleDeleteCourse(course._id)}
+                      className="delete-btn"
+                    >
+                      Delete
+                    </button>
                   </td>
                 </tr>
               ))}

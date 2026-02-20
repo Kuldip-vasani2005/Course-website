@@ -1,0 +1,109 @@
+.my-courses {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.my-courses h1 {
+    margin-bottom: 2rem;
+}
+
+.enrolled-course-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.enrolled-course-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.course-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.watch-btn,
+.review-btn {
+    flex: 1;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: transform 0.3s;
+}
+
+.watch-btn {
+    background: #667eea;
+    color: white;
+}
+
+.review-btn {
+    background: #f0f0f0;
+    color: #333;
+}
+
+.watch-btn:hover,
+.review-btn:hover {
+    transform: translateY(-2px);
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    max-width: 500px;
+    width: 90%;
+}
+
+.modal-content h2 {
+    margin-bottom: 1.5rem;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.submit-btn {
+    flex: 1;
+    padding: 0.75rem;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.cancel-btn {
+    flex: 1;
+    padding: 0.75rem;
+    background: #f0f0f0;
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+}

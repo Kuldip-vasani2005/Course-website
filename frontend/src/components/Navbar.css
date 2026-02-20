@@ -1,0 +1,229 @@
+.navbar {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid var(--border-light);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-base);
+}
+
+.navbar-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+  height: 72px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Logo */
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: transform var(--transition-fast);
+}
+
+.navbar-logo:hover {
+  transform: translateY(-2px);
+}
+
+.logo-icon {
+  font-size: 1.75rem;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.navbar-logo h2 {
+  font-size: 1.375rem;
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+}
+
+/* Menu Links */
+.navbar-menu {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+  margin-left: var(--space-2xl);
+}
+
+.navbar-link {
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: var(--space-xs) 0;
+  position: relative;
+  transition: color var(--transition-fast);
+}
+
+.navbar-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--primary);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--transition-base);
+  border-radius: var(--radius-full);
+}
+
+.navbar-link:hover {
+  color: var(--primary);
+}
+
+.navbar-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Actions (Auth/User) */
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.navbar-link-auth {
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-base);
+}
+
+.navbar-link-auth:hover {
+  background: var(--bg-hover);
+  color: var(--primary);
+}
+
+.navbar-btn-primary {
+  background: var(--primary);
+  color: white;
+  padding: 0.625rem 1.25rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all var(--transition-base);
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.2);
+}
+
+.navbar-btn-primary:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(79, 70, 229, 0.3);
+}
+
+/* User Dropdown/Profile area */
+.navbar-user {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: 0.35rem 0.75rem 0.35rem 1rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-base);
+}
+
+.navbar-user:hover {
+  border-color: var(--primary-light);
+  box-shadow: var(--shadow-md);
+  background: var(--bg-hover);
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.user-name {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+}
+
+.user-role {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.navbar-btn-logout {
+  background: var(--bg-input);
+  color: var(--text-secondary);
+  border: none;
+  padding: 0.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-base);
+  width: 32px;
+  height: 32px;
+}
+
+.navbar-btn-logout:hover {
+  background: var(--error);
+  color: white;
+  transform: scale(1.1);
+}
+
+/* Navbar Settings Link */
+.navbar-settings-link {
+  background: var(--bg-input);
+  color: var(--text-secondary);
+  border: none;
+  padding: 0.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-base);
+  width: 32px;
+  height: 32px;
+  text-decoration: none;
+}
+
+.navbar-settings-link:hover {
+  background: var(--primary);
+  color: white;
+  transform: rotate(20deg);
+}
+
+/* Mobile Responsive */
+@media (max-width: 960px) {
+  .navbar-container {
+      padding: 0 var(--space-md);
+  }
+  
+  .navbar-menu {
+      display: none; /* For now, simple hide. Real app needs a hamburger menu */
+  }
+
+  .navbar-logo h2 {
+      font-size: 1.25rem;
+  }
+  
+  .user-info {
+      display: none;
+  }
+}

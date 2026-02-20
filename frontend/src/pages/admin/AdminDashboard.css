@@ -1,0 +1,68 @@
+.admin-dashboard {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: var(--space-2xl);
+}
+
+.tabs {
+  display: flex;
+  gap: var(--space-md);
+  margin-bottom: var(--space-2xl);
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: var(--space-lg);
+}
+
+.tab {
+  padding: var(--space-md) var(--space-lg);
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all var(--transition-base);
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  position: relative;
+  margin-bottom: -var(--space-lg);
+}
+
+.tab:hover {
+  color: var(--primary);
+}
+
+.tab.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+
+.table-container {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-2xl);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-light);
+}
+
+.table-container h2 {
+  margin-bottom: var(--space-xl);
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.badge {
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.badge.student {
+  background: var(--primary-ultra-light);
+  color: var(--primary);
+}
+
+.badge.mentor {
+  background: rgba(236, 72, 153, 0.12);
+  color: var(--secondary);
+}

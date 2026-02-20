@@ -1,0 +1,120 @@
+.footer {
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  margin-top: var(--space-4xl);
+  padding: var(--space-3xl) var(--space-lg) var(--space-2xl);
+  border-top: 1px solid var(--border-light);
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-3xl);
+  max-width: 1280px;
+  margin: 0 auto var(--space-3xl);
+}
+
+.footer-section h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: var(--space-lg);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-primary);
+}
+
+.footer-logo h3 {
+  font-size: 1.375rem;
+  margin-bottom: var(--space-md);
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.footer-logo p {
+  font-size: 0.9rem;
+  color: var(--text-tertiary);
+  line-height: 1.6;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: var(--space-md);
+}
+
+.footer-section ul li a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: all var(--transition-base);
+  display: inline-block;
+}
+
+.footer-section ul li a:hover {
+  color: var(--primary);
+  transform: translateX(3px);
+}
+
+.social-links {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  background: var(--bg-input);
+  border-radius: 50%;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all var(--transition-base);
+}
+
+.social-links a:hover {
+  background: var(--primary);
+  color: white;
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.footer-bottom {
+  border-top: 1px solid var(--border-light);
+  padding-top: var(--space-xl);
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--text-tertiary);
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    text-align: center;
+  }
+
+  .footer-section h4 {
+    margin-bottom: var(--space-md);
+  }
+
+  .social-links {
+    justify-content: center;
+  }
+
+  .footer-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

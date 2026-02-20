@@ -48,8 +48,8 @@ const createCheckoutSession = async (req, res) => {
                 },
             ],
             mode: 'payment',
-            success_url: `http://localhost:5173/payment-success?session_id={CHECKOUT_SESSION_ID}`,
-            cancel_url: `http://localhost:5173/courses/${courseId}`,
+            success_url: `${process.env.FRONTEND_URL}/payment-success?session_id={CHECKOUT_SESSION_ID}`,
+            cancel_url: `${process.env.FRONTEND_URL}/courses/${courseId}`,
             metadata: {
                 studentId: req.user._id.toString(),
                 courseId: courseId,
@@ -286,7 +286,7 @@ const checkEnrollment = async (req, res) => {
         const enrollment = await Enrollment.findOne({
             studentId: req.user._id,
             courseId: req.params.courseId,
-               });
+        });
 
         res.status(200).json({
             isEnrolled: !!enrollment,
